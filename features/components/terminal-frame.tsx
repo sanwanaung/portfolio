@@ -7,7 +7,7 @@ interface TerminalFrameProps {
 
 const TerminalFrame = ({ site }: TerminalFrameProps) => {
   return (
-    <section className="w-full max-w-6xl max-h-4xl h-4xl border-terminal-border border-2 rounded-sm">
+    <section className="w-full h-full max-w-6xl max-h-4xl h-4xl border-terminal-border border-2 rounded-sm">
       <header className="flex h-11 items-center justify-center gap-3 border-b px-3">
         <div className="flex gap-2">
           <span className="size-3 rounded-full bg-terminal-red" />
@@ -19,7 +19,7 @@ const TerminalFrame = ({ site }: TerminalFrameProps) => {
           {site.terminal.hostname}
         </h1>
       </header>
-      <div className="p-3 w-full">
+      <div className="p-3 h-full w-full">
         <TerminalRunTime site={site} />
       </div>
     </section>
