@@ -22,22 +22,25 @@ export const portfolio = {
     "Zustand",
     "Git",
     "Redux",
+    "Mongo DB",
   ],
   projects: [
     {
-      name: "Project One",
-      description: "Replace with your project summary.",
-      stack: "Next.js, TypeScript",
-      year: "2026",
+      name: "Skyline Hub Hotel – Digital Menu & Room Service",
+      description:
+        "A full-stack hotel's menu prview, check prices and request room-services platform that lets guests scan a room QR code to browse digital menus, customize orders with variants and add-ons, and request room services. Features include secure room sessions, order room-serivce management, and an admin dashboard for managing menus, categories, rooms, and service requests.",
+      stack:
+        "Next.js, TypeScript, Better-Auth , Prisma ORM, PostgreSQL, Tailwind CSS, shadcn/ui, React Query, Zustand",
+      preview: "https://skyline-hub-two.vercel.app/admin/dashboard",
     },
   ],
-  experience: [
-    {
-      role: "Full Stack Engineer",
-      company: "Your Company",
-      period: "2024 — Present",
-    },
-  ],
+  // experience: [
+  //   {
+  //     role: "Full Stack Engineer",
+  //     company: "",
+  //     period: "2024 — Present",
+  //   },
+  // ],
   education: [
     {
       school: "Pyay University (Distance Education)",
@@ -45,7 +48,6 @@ export const portfolio = {
       period: "2022 — 2026",
     },
   ],
-
   contact: {
     email: "sanwanaungdev@gmail.com",
     phone: "+959 974 463092",
