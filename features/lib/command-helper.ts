@@ -1,4 +1,9 @@
 import { TerminalCommand, TerminalOutput } from "@/features/lib/command";
+import { ANSI } from "@/features/theme";
+
+export function color(text: string, ansi: string) {
+  return `${ansi}${text}${ANSI.reset}`;
+}
 
 export const text = (content: string): TerminalOutput => ({
   type: "text",
