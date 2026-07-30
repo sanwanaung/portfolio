@@ -6,12 +6,31 @@ import { TerminalBoot } from "@/features/components/terminal-boot";
 
 import { Terminal } from "@xterm/xterm";
 import { FitAddon } from "@xterm/addon-fit";
+import { ClipboardAddon } from "@xterm/addon-clipboard";
+import { ImageAddon, IImageAddonOptions } from "@xterm/addon-image";
+
 import { parseInput } from "@/features/lib/parse-input";
 import { CommandRegistry } from "@/features/lib/command-registry";
 import { terminalCommands } from "@/features/commands/index";
 import { getTerminalTheme } from "@/lib/utils";
 
 const commandRegistry = new CommandRegistry(terminalCommands);
+
+// customize as needed (showing addon defaults)
+const customSettings: IImageAddonOptions = {
+  enableSizeReports: true, // whether to enable CSI t reports (see below)
+  pixelLimit: 16777216, // max. pixel size of a single image
+  sixelSupport: true, // enable sixel support
+  sixelScrolling: true, // whether to scroll on image output
+  sixelPaletteLimit: 4096, // initial sixel palette size
+  sixelSizeLimit: 33554432, // size limit of a single sixel sequence
+  storageLimit: 128, // FIFO storage limit in MB
+  showPlaceholder: true, // whether to show a placeholder for evicted images
+  iipSupport: true, // enable iTerm IIP support
+  iipSizeLimit: 33554432, // size limit of a single IIP sequence
+  // kittySupport: true,         // enable Kitty graphics support
+  // kittySizeLimit: 33554432    // size limit of a single Kitty sequence
+};
 
 interface XtermTerminalProps {
   site: SiteConfig;
@@ -48,8 +67,12 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
     });
 
     const fitAddon = new FitAddon();
+    const clipboardAddon = new ClipboardAddon();
+    const imageAddon = new ImageAddon(customSettings);
     terminal.loadAddon(fitAddon);
+    terminal.loadAddon(clipboardAddon);
     terminal.open(containerRef.current);
+    terminal.loadAddon(imageAddon);
     fitAddon.fit();
     terminal.focus();
 

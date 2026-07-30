@@ -181,13 +181,3 @@
     @apply font-mono;
   }
 }
-
-@layer utilities {
-  .xterm .xterm-helper-textarea {
-    @apply opacity-0! absolute! left-[-9999px]! top-0! w-0! h-0! overflow-hidden! -z-10!;
-  }
-
-  .xterm-helpers {
-    @apply overflow-hidden! opacity-0!;
-  }
-}
