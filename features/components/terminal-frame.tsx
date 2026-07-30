@@ -4,22 +4,22 @@ import TerminalRunTime from "@/features/components/terminal-runtime";
 interface TerminalFrameProps {
   readonly site: SiteConfig;
 }
-
 const TerminalFrame = ({ site }: TerminalFrameProps) => {
   return (
-    <section className="w-full h-full max-w-6xl max-h-4xl h-4xl border-terminal-border border-2 rounded-sm">
-      <header className="flex h-11 items-center justify-center gap-3 border-b px-3">
-        <div className="flex gap-2">
-          <span className="size-3 rounded-full bg-terminal-red" />
-          <span className="size-3 rounded-full bg-terminal-yellow" />
-          <span className="size-3 rounded-full bg-terminal-green" />
+    <section className="flex h-full w-full flex-col bg-terminal-bg">
+      <header className="flex border-b-2 h-10 items-center justify-between px-4 opacity-70">
+        <div className="flex items-center gap-2">
+          <span className="inline-block h-3 w-3 rounded-full bg-terminal-red" />
+          <span className="inline-block h-3 w-3 rounded-full bg-terminal-yellow" />
+          <span className="inline-block h-3 w-3 rounded-full bg-terminal-green" />
         </div>
-        <h1 className="text-xs text-terminal-subtext flex-1 text-center">
-          {site.terminal.workingDirectory}/{site.username}@
-          {site.terminal.hostname}
+        <h1 className="text-xs text-terminal-subtext">
+          {site.username}@{site.terminal.hostname}:~
         </h1>
+        <div className="w-12" />
       </header>
-      <div className="p-3 h-full w-full">
+
+      <div className="flex-1 overflow-hidden">
         <TerminalRunTime site={site} />
       </div>
     </section>

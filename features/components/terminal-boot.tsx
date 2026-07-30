@@ -29,7 +29,7 @@ export function TerminalBoot({ onComplete }: TerminalBootProps) {
   }, [onComplete, prefersReducedMotion, visibleLines]);
 
   return (
-    <div className="text-sm leading-7 text-terminal-green" role="status">
+    <div className="text-sm leading-7 text-terminal-green p-3" role="status">
       <AnimatePresence initial={false}>
         {bootSequence.slice(0, visibleLines).map((line) => (
           <motion.p

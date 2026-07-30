@@ -183,11 +183,13 @@
 }
 
 @layer utilities {
-  .xterm .xterm-helper-textarea {
-    @apply opacity-0! absolute! left-[-9999px]! top-0! w-0! h-0! overflow-hidden! -z-10!;
+  .shadow-glow-red {
+    box-shadow: 0 0 8px var(--terminal-red);
   }
-
-  .xterm-helpers {
-    @apply overflow-hidden! opacity-0!;
+  .shadow-glow-yellow {
+    box-shadow: 0 0 8px var(--terminal-yellow);
+  }
+  .shadow-glow-green {
+    box-shadow: 0 0 8px var(--terminal-green);
   }
 }
