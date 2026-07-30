@@ -21,20 +21,8 @@ interface TerminalRunTimeProps {
 
 const TerminalRunTime = ({ site }: TerminalRunTimeProps) => {
   return (
-    <div className="w-full h-full flex flex-col gap-4">
-      <div>
-        <div className="flex flex-col gap-3 text-center">
-          <h1 className="text-5xl font-extrabold">{site.name}</h1>
-          <p className="text-lg text-terminal-subtext">{site.role}</p>
-        </div>
-        <div className="mt-2 text-center text-terminal-subtext text-sm">
-          <p>{site.description}</p>
-          <p>Type 'help' to see available commands.</p>
-        </div>
-      </div>
-      <div className="h-87 w-full">
-        <XtermTerminal site={site} />
-      </div>
+    <div className="h-full w-full">
+      <XtermTerminal site={site} />
     </div>
   );
 };

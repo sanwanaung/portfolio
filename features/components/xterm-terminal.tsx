@@ -18,18 +18,18 @@ const commandRegistry = new CommandRegistry(terminalCommands);
 
 // customize as needed (showing addon defaults)
 const customSettings: IImageAddonOptions = {
-  enableSizeReports: true, // whether to enable CSI t reports (see below)
-  pixelLimit: 16777216, // max. pixel size of a single image
-  sixelSupport: true, // enable sixel support
-  sixelScrolling: true, // whether to scroll on image output
-  sixelPaletteLimit: 4096, // initial sixel palette size
-  sixelSizeLimit: 33554432, // size limit of a single sixel sequence
-  storageLimit: 128, // FIFO storage limit in MB
-  showPlaceholder: true, // whether to show a placeholder for evicted images
-  iipSupport: true, // enable iTerm IIP support
-  iipSizeLimit: 33554432, // size limit of a single IIP sequence
-  // kittySupport: true,         // enable Kitty graphics support
-  // kittySizeLimit: 33554432    // size limit of a single Kitty sequence
+  enableSizeReports: true,
+  pixelLimit: 16777216,
+  sixelSupport: true,
+  sixelScrolling: true,
+  sixelPaletteLimit: 4096,
+  sixelSizeLimit: 33554432,
+  storageLimit: 128,
+  showPlaceholder: true,
+  iipSupport: true,
+  iipSizeLimit: 33554432,
+  // kittySupport: true,
+  // kittySizeLimit: 33554432
 };
 
 interface XtermTerminalProps {
@@ -121,19 +121,6 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
 
     let currentInput = "";
     terminal.onData((data) => {
-      // if (data === "\r") {
-      //   terminal.write("\r\n");
-
-      //   if (currentInput.trim()) {
-      //     executeCommand(currentInput);
-      //   }
-
-      //   currentInput = "";
-
-      //   writePrompt();
-      //   return;
-      // }
-
       //Arrow Up
       if (data === "\u001b[A") {
         historyIndex = Math.max(0, historyIndex - 1);
@@ -159,10 +146,6 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
         }
         return;
       }
-      // Ignore any other unhandled escape sequences or control codes
-      // if (data.includes("\u001b") || data < " ") {
-      //   return;
-      // }
 
       for (const character of data) {
         if (character === "\r") {
@@ -188,8 +171,6 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
           terminal?.write(character);
         }
       }
-      // currentInput += data;
-      // terminal.write(data);
     });
 
     return () => {
@@ -200,5 +181,26 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
 
   if (!hasBooted) return <TerminalBoot onComplete={completeBooted} />;
 
-  return <div ref={containerRef} className="h-full" />;
+  return (
+    <div className="h-full w-full relative p-2">
+      {/* Terminal is mounted only after boot fade-out */}
+      {hasBooted && (
+        <div
+          ref={containerRef}
+          className="h-full"
+          style={{ padding: "0.25rem" }}
+        />
+      )}
+
+      {!hasBooted && (
+        <div
+          className={`absolute inset-0 z-10 transition-opacity duration-500 ${
+            hasBooted ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <TerminalBoot onComplete={completeBooted} />
+        </div>
+      )}
+    </div>
+  );
 };

@@ -5,7 +5,7 @@ interface XtermLoadingProps {
 
 const XtermLoading = ({ message, description }: XtermLoadingProps) => {
   return (
-    <div className="flex items-center text-terminal-green">
+    <div className="flex items-center text-terminal-green p-3">
       <p>{message}</p>
       {description && <p>{description}</p>}
     </div>

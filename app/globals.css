@@ -181,3 +181,15 @@
     @apply font-mono;
   }
 }
+
+@layer utilities {
+  .shadow-glow-red {
+    box-shadow: 0 0 8px var(--terminal-red);
+  }
+  .shadow-glow-yellow {
+    box-shadow: 0 0 8px var(--terminal-yellow);
+  }
+  .shadow-glow-green {
+    box-shadow: 0 0 8px var(--terminal-green);
+  }
+}
