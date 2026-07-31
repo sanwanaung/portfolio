@@ -8,11 +8,15 @@ import { Terminal } from "@xterm/xterm";
 import { FitAddon } from "@xterm/addon-fit";
 import { ClipboardAddon } from "@xterm/addon-clipboard";
 import { ImageAddon, IImageAddonOptions } from "@xterm/addon-image";
+import { WebLinksAddon } from "@xterm/addon-web-links";
 
 import { parseInput } from "@/features/lib/parse-input";
 import { CommandRegistry } from "@/features/lib/command-registry";
 import { terminalCommands } from "@/features/commands/index";
 import { getTerminalTheme } from "@/lib/utils";
+import { ASCCI_NAME } from "@/config/site";
+import { ANSI } from "@/features/theme";
+import { centerAscii } from "@/features/lib";
 
 const commandRegistry = new CommandRegistry(terminalCommands);
 
@@ -53,6 +57,7 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
       terminal.write(currentInput);
     };
     let historyIndex = 0;
+    let firstLaunch = true;
 
     const terminal = new Terminal({
       allowTransparency: true,
@@ -69,10 +74,12 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
     const fitAddon = new FitAddon();
     const clipboardAddon = new ClipboardAddon();
     const imageAddon = new ImageAddon(customSettings);
+    const webLinksAddon = new WebLinksAddon();
     terminal.loadAddon(fitAddon);
     terminal.loadAddon(clipboardAddon);
     terminal.open(containerRef.current);
     terminal.loadAddon(imageAddon);
+    terminal.loadAddon(webLinksAddon);
     fitAddon.fit();
     terminal.focus();
 
@@ -80,9 +87,21 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
     resizeObserver.observe(containerRef.current);
 
     const writePrompt = () => {
+      if (firstLaunch) {
+        terminal.writeln(
+          centerAscii(terminal, `${ANSI.green}${ASCCI_NAME}${ANSI.reset}`),
+        );
+        terminal.writeln(
+          centerAscii(
+            terminal,
+            `Welcome to San Wan Aung's interactive portfolio terminal!\nType 'help' for available commands.\n`,
+          ),
+        );
+      }
       terminal.write(
         `👤  \u001b[38;5;78m${site.username}@${site.terminal.hostname}\u001b[0m:\u001b[38;5;75m~\u001b[0m$ `,
       );
+      firstLaunch = false;
     };
     writePrompt();
 
