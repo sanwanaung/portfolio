@@ -13,6 +13,8 @@ export const projectsCommand = staticCommand({
 ${color(`📦 ${project.name}`, ANSI.blue)}
 ${"─".repeat(project.name.length)}
 
+${project.images.map((item) => item)} 
+
 ${project.description}
 
 ${color("Stack", ANSI.green)}   : ${project.stack}
