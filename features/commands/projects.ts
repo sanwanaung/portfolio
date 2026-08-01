@@ -6,7 +6,7 @@ export const projectsCommand = staticCommand({
   name: "projects",
   description: "List projects",
   usage: "projects",
-  aliases: ["work"],
+  aliases: [],
   content: portfolio.projects
     .map((project) =>
       `
