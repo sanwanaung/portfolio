@@ -32,7 +32,11 @@ export const portfolio = {
       stack:
         "Next.js, TypeScript, Better-Auth , Prisma ORM, PostgreSQL, Tailwind CSS, shadcn/ui, React Query, Zustand",
       preview: "https://skyline-hub-two.vercel.app/admin/dashboard",
-      images: ["./dashboard-showcase.png"],
+      images: [
+        "./dashboard-showcase.png",
+        "./skyline-hub-menu.png",
+        "./skyline-hub-room-service-request.png",
+      ],
     },
   ],
   // experience: [

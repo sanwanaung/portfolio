@@ -1,15 +1,16 @@
 import { portfolio } from "@/config";
-import { color, image, text } from "@/features/lib/command-helper";
+import { color, text } from "@/features/lib/command-helper";
 import { ANSI } from "@/features/theme";
 import { TerminalCommand, TerminalOutput } from "@/features/lib/command";
+import { convertIIP } from "../lib";
 
 export const projectsCommand: TerminalCommand = {
   name: "projects",
   description: "List projects",
   usage: "projects",
-  aliases: ["work"],
+  aliases: [""],
 
-  execute: () => {
+  execute: async () => {
     const outputs: TerminalOutput[] = [];
 
     for (const project of portfolio.projects) {
@@ -24,7 +25,11 @@ ${color("Name", ANSI.green)}
       );
 
       if (project.images.length > 0) {
-        outputs.push(image(project.images));
+        const iipImages = await Promise.all(
+          project.images.map((image) => convertIIP(image)),
+        );
+
+        outputs.push(text(iipImages.join("\n")));
       }
 
       outputs.push(
@@ -35,7 +40,7 @@ ${color("Description", ANSI.green)}
 ${color("Stack", ANSI.green)}
   ${project.stack}
 
-${color("Preview", ANSI.green)}
+${color("Preview", ANSI.yellow)}
   ${project.preview}
 `),
       );
