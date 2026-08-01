@@ -6,8 +6,12 @@ export const helpCommand = {
   description: "List available commands",
   usage: "help",
   aliases: ["?"],
-  execute: () =>
+
+  execute: () => [
     text(
-      `Available commands:\n${terminalCommands.map((command) => `  ${command.name.padEnd(12)} ${command.description}`).join("\n")}\n\nUse Tab to autocomplete.`,
+      `Available commands:\n${terminalCommands
+        .map((command) => `  ${command.name.padEnd(12)} ${command.description}`)
+        .join("\n")}\n\nUse Tab to autocomplete.`,
     ),
+  ],
 } as const;

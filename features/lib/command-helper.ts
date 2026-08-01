@@ -11,11 +11,24 @@ export const text = (content: string): TerminalOutput => ({
 });
 
 export const staticCommand = (
-  command: Omit<TerminalCommand, "execute"> & { readonly content: string },
+  command: Omit<TerminalCommand, "execute"> & {
+    readonly content: string;
+  },
 ): TerminalCommand => ({
   ...command,
-  execute: () => text(command.content),
+
+  execute: () => [
+    {
+      type: "text",
+      content: command.content,
+    },
+  ],
 });
 
 export const list = (items: readonly string[]) =>
   items.map((item) => `  • ${item}`).join("\n");
+
+export const image = (paths: string[]): TerminalOutput => ({
+  type: "image",
+  paths,
+});

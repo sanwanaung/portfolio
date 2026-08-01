@@ -9,10 +9,7 @@ export const aboutCommand = staticCommand({
   aliases: [],
   content: `${color("🧑‍💻 About", ANSI.green)}
 ${color("────────────────────────────────────", ANSI.bold)}\n
-Full Stack Developer passionate about building
-modern web applications with clean architecture,
-thoughtful user experiences, and reliable backend
-systems.\n
+${portfolio.about}\n
 ${color("Currently focusing on", ANSI.cyan)}
   • Next.js
   • React.js

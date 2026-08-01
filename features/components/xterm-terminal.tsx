@@ -16,7 +16,7 @@ import { terminalCommands } from "@/features/commands/index";
 import { getTerminalTheme } from "@/lib/utils";
 import { ASCCI_NAME } from "@/config/site";
 import { ANSI } from "@/features/theme";
-import { centerAscii } from "@/features/lib";
+import { centerAscii, convertIIP } from "@/features/lib";
 
 const commandRegistry = new CommandRegistry(terminalCommands);
 
@@ -106,7 +106,6 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
     writePrompt();
 
     const executeCommand = async (input: string) => {
-      // terminal.writeln(`You typed: ${input}`);
       const { args, commandName } = parseInput(input);
       const command = commandRegistry.get(commandName);
       if (!command) {
@@ -118,23 +117,35 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
         );
         return;
       }
-      const output = await command.execute({
+      const outputs = await command.execute({
         args: args,
         history: commandHistory,
         input,
         now: new Date(),
         site,
       });
-      switch (output.type) {
-        case "text":
-          terminal.writeln(output.content);
-          break;
-        case "clear":
-          terminal.clear();
-          break;
-        case "set-theme":
-          //
-          break;
+      for (const output of outputs) {
+        switch (output.type) {
+          case "text":
+            terminal.writeln(output.content);
+            break;
+
+          case "image": {
+            for (const path of output.paths) {
+              const iip = await convertIIP(path);
+              terminal.write(iip);
+            }
+            break;
+          }
+
+          case "clear":
+            terminal.clear();
+            break;
+
+          case "set-theme":
+            // update terminal theme
+            break;
+        }
       }
     };
 

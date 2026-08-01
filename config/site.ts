@@ -1,4 +1,3 @@
-import { ANSI } from "@/features/theme";
 import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {

@@ -1,18 +1,13 @@
 import { SiteConfig } from "@/types";
 
-export type TerminalTheme =
-  | "dark"
-  | "light"
-  | "matrix"
-  | "dracula"
-  | "nord"
-  | "catppuccin"
-  | "tokyo-night";
-
 export type TerminalOutput =
   | { readonly type: "text"; readonly content: string }
   | { readonly type: "clear" }
-  | { readonly type: "set-theme"; readonly theme: TerminalTheme };
+  | { readonly type: "set-theme"; readonly theme: TerminalTheme }
+  | {
+      type: "image";
+      paths: string[];
+    };
 
 export interface CommandContext {
   readonly args: readonly string[];
@@ -28,5 +23,17 @@ export interface TerminalCommand {
   readonly description: string;
   readonly usage: string;
   readonly aliases: readonly string[];
-  execute(context: CommandContext): TerminalOutput | Promise<TerminalOutput>;
+
+  execute(
+    context: CommandContext,
+  ): readonly TerminalOutput[] | Promise<readonly TerminalOutput[]>;
 }
+
+export type TerminalTheme =
+  | "dark"
+  | "light"
+  | "matrix"
+  | "dracula"
+  | "nord"
+  | "catppuccin"
+  | "tokyo-night";

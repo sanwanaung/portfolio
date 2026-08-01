@@ -32,7 +32,7 @@ export const portfolio = {
       stack:
         "Next.js, TypeScript, Better-Auth , Prisma ORM, PostgreSQL, Tailwind CSS, shadcn/ui, React Query, Zustand",
       preview: "https://skyline-hub-two.vercel.app/admin/dashboard",
-      images: [""],
+      images: ["./dashboard-showcase.png"],
     },
   ],
   // experience: [
@@ -59,4 +59,10 @@ export const portfolio = {
     repository: "https://github.com/sanwanaung/portfolio",
     resume: "/resume.pdf",
   },
-} as const;
+};
+
+/*
+
+
+
+*/
