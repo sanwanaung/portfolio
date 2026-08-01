@@ -1,24 +1,51 @@
 import { portfolio } from "@/config";
-import { color, staticCommand } from "@/features/lib/command-helper";
+import { color, text } from "@/features/lib/command-helper";
 import { ANSI } from "@/features/theme";
+import { TerminalCommand, TerminalOutput } from "@/features/lib/command";
+import { convertIIP } from "../lib";
 
-export const projectsCommand = staticCommand({
+export const projectsCommand: TerminalCommand = {
   name: "projects",
   description: "List projects",
   usage: "projects",
-  aliases: ["work"],
-  content: portfolio.projects
-    .map((project) =>
-      `
-${color(`📦 ${project.name}`, ANSI.blue)}
-${"─".repeat(project.name.length)}
+  aliases: [""],
 
-${project.images.map((item) => item)} 
+  execute: async () => {
+    const outputs: TerminalOutput[] = [];
 
-${project.description}
+    for (const project of portfolio.projects) {
+      outputs.push(
+        text(`
+${color("📦 Project", ANSI.blue)}
+${"─".repeat(40)}
 
-${color("Stack", ANSI.green)}   : ${project.stack}
-${color("Preview", ANSI.yellow)} : ${project.preview}`.trim(),
-    )
-    .join("\n"),
-});
+${color("Name", ANSI.green)}
+  ${project.name}
+`),
+      );
+
+      if (project.images.length > 0) {
+        const iipImages = await Promise.all(
+          project.images.map((image) => convertIIP(image)),
+        );
+
+        outputs.push(text(iipImages.join("\n")));
+      }
+
+      outputs.push(
+        text(`
+${color("Description", ANSI.green)}
+  ${project.description}
+
+${color("Stack", ANSI.green)}
+  ${project.stack}
+
+${color("Preview", ANSI.yellow)}
+  ${project.preview}
+`),
+      );
+    }
+
+    return outputs;
+  },
+};

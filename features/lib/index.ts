@@ -16,7 +16,10 @@ export function centerAscii(terminal: Terminal, ascii: string): string {
     .join("\n");
 }
 
-export async function convertIIP(imageUrl: string): Promise<string> {
+export async function convertIIP(
+  imageUrl: string,
+  width = 80,
+): Promise<string> {
   const response = await fetch(imageUrl);
 
   if (!response.ok) {
@@ -41,7 +44,7 @@ export async function convertIIP(imageUrl: string): Promise<string> {
   const OSC = "\x1b]1337;";
   const ST = "\x07";
 
-  const args = `File=size=${blob.size};inline=1`;
+  const args = `File=size=${blob.size};width=${width};inline=1`;
 
   return `${OSC}${args}:${base64Data}${ST}`;
 }
