@@ -139,6 +139,15 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
         case "set-theme":
           //
           break;
+        case "open-external":
+          console.log(`Opening external ${output.url}`);
+          if (output.url.startsWith("mailto:")) {
+            window.location.href = output.url;
+          } else {
+            window.open(output.url, "_blank", "noopener,noreferrer");
+          }
+          terminal.writeln(`Opening external ${output.url}...`);
+          break;
       }
     };
 

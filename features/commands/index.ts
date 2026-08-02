@@ -7,6 +7,7 @@ import { projectsCommand } from "@/features/commands/projects";
 import { educationCommand } from "@/features/commands/education";
 import { contactCommand } from "@/features/commands/contact";
 import { socialsCommand } from "@/features/commands/socials";
+import { emailCommand } from "@/features/commands/email";
 
 import type { TerminalCommand } from "@/features/lib/command";
 
@@ -20,4 +21,5 @@ export const terminalCommands: readonly TerminalCommand[] = [
   educationCommand,
   contactCommand,
   socialsCommand,
+  emailCommand,
 ];

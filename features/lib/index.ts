@@ -44,7 +44,7 @@ export async function convertIIP(
   const ST = "\x07";
 
   const width = options?.widthCells ?? 30;
-  const height = options?.heightCells ?? 15;
+  const height = options?.heightCells ?? 8;
 
   const args = `File=size=${blob.size};inline=1;preserveAspectRatio=0;width=${width};height=${height}`;
 

@@ -13,7 +13,8 @@ export type TerminalTheme =
 export type TerminalOutput =
   | { readonly type: "text"; readonly content: string }
   | { readonly type: "clear" }
-  | { readonly type: "set-theme"; readonly theme: TerminalTheme };
+  | { readonly type: "set-theme"; readonly theme: TerminalTheme }
+  | { readonly type: "open-external"; readonly url: string };
 
 export interface CommandContext {
   readonly args: readonly string[];
