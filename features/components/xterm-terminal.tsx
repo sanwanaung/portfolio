@@ -69,7 +69,7 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
       lineHeight: 2.5,
       scrollback: 1000,
       scrollOnUserInput: true,
-      smoothScrollDuration: 1500,
+      smoothScrollDuration: 150,
       theme: getTerminalTheme(),
     });
 
