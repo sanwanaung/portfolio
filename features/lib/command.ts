@@ -1,4 +1,5 @@
 import { SiteConfig } from "@/types";
+import type { Terminal } from "@xterm/xterm";
 
 export type TerminalTheme =
   | "dark"
@@ -20,6 +21,7 @@ export interface CommandContext {
   readonly now: Date;
   readonly site: SiteConfig;
   readonly theme?: TerminalTheme;
+  readonly cols: number;
   readonly history: readonly string[];
 }
 
