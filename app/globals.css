@@ -186,10 +186,35 @@
   .shadow-glow-red {
     box-shadow: 0 0 8px var(--terminal-red);
   }
+
   .shadow-glow-yellow {
     box-shadow: 0 0 8px var(--terminal-yellow);
   }
+
   .shadow-glow-green {
     box-shadow: 0 0 8px var(--terminal-green);
+  }
+
+  .xterm .xterm-viewport {
+    background: transparent;
+    overflow-y: auto;
+  }
+
+  .xterm .xterm-viewport::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 999px;
+  }
+
+  .xterm .xterm-viewport::-webkit-scrollbar-track {
+    background: var(--terminal-surface);
+  }
+
+  .xterm .xterm-viewport::-webkit-scrollbar-thumb {
+    background: var(--terminal-green);
+    border-radius: 999px;
+  }
+
+  .xterm .xterm-viewport::-webkit-scrollbar-thumb:hover {
+    background: var(--terminal-cyan);
   }
 }

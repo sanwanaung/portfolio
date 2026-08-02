@@ -68,6 +68,8 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
       fontSize: 16,
       lineHeight: 2.5,
       scrollback: 1000,
+      scrollOnUserInput: true,
+      smoothScrollDuration: 1500,
       theme: getTerminalTheme(),
     });
 
@@ -85,6 +87,7 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
 
     const resizeObserver = new ResizeObserver(() => fitAddon.fit());
     resizeObserver.observe(containerRef.current);
+    console.log(terminal.cols);
 
     const writePrompt = () => {
       if (firstLaunch) {
@@ -124,6 +127,7 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
         input,
         now: new Date(),
         site,
+        cols: terminal.cols,
       });
       switch (output.type) {
         case "text":
@@ -167,15 +171,31 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
       }
 
       for (const character of data) {
+        // if (character === "\r") {
+        //   terminal.write("\r\n");
+        //   if (currentInput.trim()) {
+        //     commandHistory.push(currentInput);
+        //     historyIndex = commandHistory.length;
+        //     void executeCommand(currentInput);
+        //   }
+        //   currentInput = "";
+        //   queueMicrotask(writePrompt);
+        //   continue;
+        // }
         if (character === "\r") {
           terminal.write("\r\n");
-          if (currentInput.trim()) {
-            commandHistory.push(currentInput);
-            historyIndex = commandHistory.length;
-            void executeCommand(currentInput);
-          }
+          const submittedInput = currentInput;
           currentInput = "";
-          queueMicrotask(writePrompt);
+
+          if (submittedInput.trim()) {
+            commandHistory.push(submittedInput);
+            historyIndex = commandHistory.length;
+            void executeCommand(submittedInput).then(() => {
+              writePrompt();
+            });
+          } else {
+            queueMicrotask(writePrompt);
+          }
           continue;
         }
         if (character === "\u007f") {
