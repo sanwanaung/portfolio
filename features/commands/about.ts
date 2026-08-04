@@ -9,7 +9,7 @@ export const aboutCommand = staticCommand({
   aliases: [],
   content: `${color("🧑‍💻 About", ANSI.green)}
 ${color("────────────────────────────────────", ANSI.bold)}\n
-${portfilio.about}\n
+${portfolio.about}\n
 ${color("Currently focusing on", ANSI.cyan)}
   • Next.js
   • React.js
