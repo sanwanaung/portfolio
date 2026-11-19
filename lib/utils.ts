@@ -11,14 +11,16 @@ export function getTerminalTheme() {
   return {
     background: styles.getPropertyValue("--terminal-bg").trim(),
     foreground: styles.getPropertyValue("--terminal-text").trim(),
-    // cursor: styles.getPropertyValue("--terminal-green").trim(),
+    cursor: styles.getPropertyValue("--terminal-accent").trim(),
+    cursorAccent: styles.getPropertyValue("--terminal-bg").trim(),
     black: "#000000",
-    blue: styles.getPropertyValue("--terminal-blue").trim(),
-    green: styles.getPropertyValue("--terminal-green").trim(),
-    yellow: styles.getPropertyValue("--terminal-yellow").trim(),
-    red: styles.getPropertyValue("--terminal-red").trim(),
-    magenta: styles.getPropertyValue("--terminal-pink").trim(),
-    cyan: styles.getPropertyValue("--terminal-cyan").trim(),
+    blue: styles.getPropertyValue("--terminal-accent").trim(),
+    green: styles.getPropertyValue("--terminal-success").trim(),
+    yellow: styles.getPropertyValue("--terminal-accent").trim(),
+    red: "#F87171",
+    magenta: styles.getPropertyValue("--terminal-accent").trim(),
+    cyan: styles.getPropertyValue("--terminal-accent").trim(),
     white: styles.getPropertyValue("--terminal-text").trim(),
+    selectionBackground: styles.getPropertyValue("--terminal-elevated").trim(),
   };
 }

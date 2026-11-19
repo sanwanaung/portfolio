@@ -49,21 +49,13 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* My custom variables */
   --color-terminal-bg: var(--terminal-bg);
   --color-terminal-surface: var(--terminal-surface);
-  --color-terminal-overlay: var(--terminal-overlay);
-
+  --color-terminal-elevated: var(--terminal-elevated);
   --color-terminal-text: var(--terminal-text);
   --color-terminal-subtext: var(--terminal-subtext);
-
-  --color-terminal-blue: var(--terminal-blue);
-  --color-terminal-green: var(--terminal-green);
-  --color-terminal-yellow: var(--terminal-yellow);
-  --color-terminal-red: var(--terminal-red);
-  --color-terminal-pink: var(--terminal-pink);
-  --color-terminal-cyan: var(--terminal-cyan);
-
+  --color-terminal-accent: var(--terminal-accent);
+  --color-terminal-success: var(--terminal-success);
   --color-terminal-border: var(--terminal-border);
 }
 
@@ -101,22 +93,16 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* My custom variables */
-  --terminal-bg: oklch(95.5% 0.01 271);
-  --terminal-surface: oklch(92.5% 0.012 271);
-  --terminal-overlay: oklch(79% 0.02 271);
-
-  --terminal-text: oklch(44% 0.03 282);
-  --terminal-subtext: oklch(55% 0.025 282);
-
-  --terminal-blue: oklch(58% 0.22 262);
-  --terminal-green: oklch(70% 0.18 145);
-  --terminal-yellow: oklch(77% 0.16 88);
-  --terminal-red: oklch(63% 0.23 22);
-  --terminal-pink: oklch(73% 0.18 340);
-  --terminal-cyan: oklch(68% 0.13 210);
-
-  --terminal-border: oklch(84% 0.015 271);
+  /* Terminal design tokens (light) */
+  --terminal-bg: #F4F4F7;
+  --terminal-surface: #FFFFFF;
+  --terminal-elevated: #ECECF1;
+  --terminal-text: #18181B;
+  --terminal-subtext: #71717A;
+  --terminal-accent: #6478E8;
+  --terminal-success: #249B69;
+  --terminal-border: #D4D4D8;
+  --terminal-shadow: 0 8px 30px rgba(0,0,0,0.08);
 }
 
 .dark {
@@ -152,22 +138,16 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
-  /* My custom variables for dark mode */
-  --terminal-bg: oklch(24% 0.02 290);
-  --terminal-surface: oklch(31% 0.025 290);
-  --terminal-overlay: oklch(40% 0.02 290);
-
-  --terminal-text: oklch(90% 0.02 290);
-  --terminal-subtext: oklch(76% 0.02 290);
-
-  --terminal-blue: oklch(76% 0.13 255);
-  --terminal-green: oklch(85% 0.12 145);
-  --terminal-yellow: oklch(90% 0.11 95);
-  --terminal-red: oklch(76% 0.15 15);
-  --terminal-pink: oklch(84% 0.11 340);
-  --terminal-cyan: oklch(86% 0.09 200);
-
-  --terminal-border: oklch(42% 0.02 290);
+  /* Terminal design tokens (dark) */
+  --terminal-bg: #09090B;
+  --terminal-surface: #111318;
+  --terminal-elevated: #20232B;
+  --terminal-text: #E4E4E7;
+  --terminal-subtext: #A1A1AA;
+  --terminal-accent: #8B9CF7;
+  --terminal-success: #65D6A3;
+  --terminal-border: #27272A;
+  --terminal-shadow: 0 8px 30px rgba(0,0,0,0.4);
 }
 
 @layer base {
@@ -210,11 +190,11 @@
   }
 
   .xterm .xterm-viewport::-webkit-scrollbar-thumb {
-    background: var(--terminal-green);
+    background: var(--terminal-accent);
     border-radius: 999px;
   }
 
   .xterm .xterm-viewport::-webkit-scrollbar-thumb:hover {
-    background: var(--terminal-cyan);
+    background: var(--terminal-accent);
   }
 }

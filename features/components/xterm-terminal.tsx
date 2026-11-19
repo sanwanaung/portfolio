@@ -14,7 +14,7 @@ import { parseInput } from "@/features/lib/parse-input";
 import { CommandRegistry } from "@/features/lib/command-registry";
 import { terminalCommands } from "@/features/commands/index";
 import { getTerminalTheme } from "@/lib/utils";
-import { ASCCI_NAME } from "@/config/site";
+import { ASCCI_NAME, ASCCI_NAME_COMPACT } from "@/config/site";
 import { ANSI } from "@/features/theme";
 import { centerAscii } from "@/features/lib";
 
@@ -65,8 +65,9 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
       cursorBlink: true,
       cursorStyle: "underline",
       fontFamily: "var(--font-mono)",
-      fontSize: 16,
-      lineHeight: 2.5,
+      fontSize: window.innerWidth < 640 ? 12 : 14,
+      lineHeight: 1.4,
+      letterSpacing: 0,
       scrollback: 1000,
       scrollOnUserInput: true,
       smoothScrollDuration: 150,
@@ -91,9 +92,12 @@ export const XtermTerminal = ({ site }: XtermTerminalProps) => {
 
     const writePrompt = () => {
       if (firstLaunch) {
-        terminal.writeln(
-          centerAscii(terminal, `${ANSI.green}${ASCCI_NAME}${ANSI.reset}`),
-        );
+        let banner = `${ANSI.green}San Wan Aung${ANSI.reset}`;
+        if (terminal.cols >= 80)
+          banner = `${ANSI.green}${ASCCI_NAME}${ANSI.reset}`;
+        else if (terminal.cols >= 40)
+          banner = `${ANSI.green}${ASCCI_NAME_COMPACT}${ANSI.reset}`;
+        terminal.writeln(centerAscii(terminal, banner));
         terminal.writeln(
           centerAscii(
             terminal,

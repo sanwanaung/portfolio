@@ -1,6 +1,8 @@
 export const bootSequence = [
-  "Initializing portfolio terminal...",
+  "Initializing portfolio environment...",
   "Loading user profile...",
+  "Loading terminal interface...",
+  "Preparing commands...",
   "Terminal ready.",
 ] as const;
 
@@ -23,6 +25,8 @@ export const portfolio = {
     "Git",
     "Redux",
     "Mongo DB",
+    "Nginx",
+    "Docker",
   ],
   projects: [
     {
@@ -61,6 +65,21 @@ export const portfolio = {
   socials: {
     github: "https://github.com/sanwanaung",
     repository: "https://github.com/sanwanaung/portfolio",
-    resume: "/resume.pdf",
+    resume: "https://sanwanaungportfolio.vercel.app/resume.pdf",
   },
 } as const;
+
+export const badges = [
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "PostgreSQL",
+  "MongoDB",
+  "Prisma",
+  "Tailwind CSS",
+  "Nginx",
+  "Docker",
+  "Git",
+];

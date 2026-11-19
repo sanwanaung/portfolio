@@ -13,6 +13,17 @@ export const siteConfig: SiteConfig = {
   },
 };
 
+export const ASCCI_NAME_COMPACT = String.raw`
+  {\  ***  /}
+  {{\  _  /}}
+  {{{\(_)/}}}
+  {{{(_j_)}}}
+   {{{/ \}}}
+    {/   \}
+    /     \
+    (_______)
+`;
+
 export const ASCCI_NAME = String.raw`
    _____                _       __               ___                    
   / ___/____ _____     | |     / /___ _____     /   | __  ______  ____ _
