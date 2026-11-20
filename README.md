@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# San Wan Aung — Interactive Terminal Portfolio
+
+A developer portfolio where an interactive terminal is the primary interface. It presents experience, skills, projects, and contact information through a real xterm.js terminal wrapped in a macOS-inspired window.
+
+## Overview
+
+The application is a single-page Next.js app. The hero pairs a concise personal introduction with a live terminal. Below it, minimal sections cover about, projects, and contact. All interaction happens through the terminal command system; there is no navbar or sidebar.
+
+## Features
+
+- Live xterm.js terminal with command execution
+- Command registry with aliases, parsing, history, and Tab autocomplete
+- Arrow-key history navigation
+- macOS-style window chrome with traffic-light controls
+- Boot sequence animation
+- Light, dark, and system themes via next-themes
+- Responsive ASCII banner that adapts to terminal width
+- Custom 404 page matching the terminal aesthetic
+- External link and mailto handling from commands
+
+## Technology Stack
+
+| Category | Technologies |
+| --- | --- |
+| Framework | Next.js 16, React 19 |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4, shadcn/ui, tw-animate-css |
+| Animation | Framer Motion |
+| Terminal | xterm.js 6 with fit, clipboard, image, and web-links addons |
+| Theming | next-themes |
+| Icons | Lucide React |
+| Tooling | ESLint 9, pnpm |
+
+## Project Architecture
+
+```
+app/
+  page.tsx          # Hero layout and content sections
+  layout.tsx        # Fonts, metadata, theme provider
+  globals.css       # Design tokens and terminal styling
+  not-found.tsx     # Custom 404 page
+config/
+  index.ts          # Boot sequence and portfolio content
+  site.ts           # Site config and ASCII banners
+features/
+  commands/         # Command definitions and registry
+  components/       # Terminal runtime, frame, boot, loading
+  lib/              # Parsing, helpers, image utilities
+  theme/            # Theme toggle
+providers/         # next-themes provider
+lib/               # Utilities, including xterm theme mapping
+types/             # Shared TypeScript interfaces
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- pnpm
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/sanwanaung/portfolio.git
+cd portfolio
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | Description |
+| --- | --- |
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Create a production build |
+| `pnpm start` | Run the production server |
+| `pnpm lint` | Run ESLint |
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Portfolio content is defined in `config/index.ts`. Site metadata and terminal identity live in `config/site.ts`. No environment variables are required.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project is compatible with Vercel. Connect the repository to Vercel or run `vercel` from the project root.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All rights reserved.
